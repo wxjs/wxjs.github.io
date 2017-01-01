@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Amy Alice Will Tianyu Team">
+    <title>文献检索引擎 </title>
+  <link rel = "shortcut icon" href = "favicon.png">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">文献检索引擎</a>
+
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">分析</a></li>
+            <li><a href="About Us.html">关于我们</a></li>
+            <!--<li><a href="#about">About</a></li>-->
+<!--             <li><a href="#contact">联系我们</a></li> -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+
+  <div class="container">
+    <br></br>
+	<FORM NAME="myform">
+    <div class="jumbotron">
+        <p>关键词/参数 （如果关键词在列表中没有，请自行输入。 如：输入“哮喘”可以找到所有与哮喘有关的信息）</p>
+        <div class="form-group">
+      <div class="ui fluid multiple search selection dropdown">
+        <input id = "inputid" name="tags" type="hidden">
+        <i class="dropdown icon"></i>
+        <div class="default text"> <font size = "1.5px"> 参数 </font> </div>
+        <div class="menu">
+          <div class="item" data-value="建议">论文中的建议</div>
+          <div class="item" data-value="日期："> 编写日期 </div>
+          <div class="item" data-value="《">论文中提及过的文章或书籍</div>
+          <div class="item" data-value="案例">列举过的案例</div>
+          <div class="item" data-value="1">论文中的数据</div>
+          <div class="item" data-value="症状">论文列举过的症状</div>         
+        </div>
+		<input id="insertid" type="hidden" onclick="insert()" />
+      </div>
+        </div>
+		<br></br>
+		<INPUT class="btn btn-primary btn-lg" id = "btnid" TYPE="button" NAME="button4" Value="Save" 
+        onClick = "insert()">
+		</FORM>
+      </div>
+    </div><!-- /.container -->
+  
+
+  
+
+
+    <div class="container">
+
+    <div class="jumbotron">
+
+<table>
+    <tr><td><p>文献:</p></td></tr>
+    <tr>
+        <td colspan="3">
+            <textarea id="inputTextToSave" cols="80" rows="25"></textarea>
+
+        </td>
+    </tr>
+    <!-- <tr>
+        <td>Filename to Save As:</td>
+        <td><input id="inputFileNameToSaveAs"></input></td>
+        <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+    </tr> -->
+    <tr>
+        <td>选择上传文献（单一.txt文本文件）:</td>
+        <td><input type="file" id="fileToLoad"></td>
+        <td><button onclick="loadFileAsText()">加载</button><td>
+    </tr>
+</table>
+
+
+
+
+  <!--   <p>Please Paste The Job Description Below:</p> -->
+
+    <SCRIPT LANGUAGE="JavaScript">
+    function seeTextArea (form) {
+      //msg=form.myarea.value;///// 
+      msg=textFromFileLoaded;
+      var words = msg.split("。");
+      var outputwords=[];
+      var outputstring="";
+      if (SelectedPrarmeters.indexOf("建议")>-1)
+      {
+        SelectedPrarmeters[SelectedPrarmeters.length]="推荐";
+        SelectedPrarmeters[SelectedPrarmeters.length]="发起";
+        SelectedPrarmeters[SelectedPrarmeters.length]="倡导";
+      }
+      if (SelectedPrarmeters.indexOf("案例")>-1)
+      {
+        SelectedPrarmeters[SelectedPrarmeters.length]="举例";
+        SelectedPrarmeters[SelectedPrarmeters.length]="发生过";
+        SelectedPrarmeters[SelectedPrarmeters.length]="有过";
+        SelectedPrarmeters[SelectedPrarmeters.length]="曾经";
+        SelectedPrarmeters[SelectedPrarmeters.length]="例";
+      }
+      if (SelectedPrarmeters.indexOf("症状")>-1)
+      {
+        SelectedPrarmeters[SelectedPrarmeters.length]="诱发";
+        SelectedPrarmeters[SelectedPrarmeters.length]="症";
+      }
+      if (SelectedPrarmeters.indexOf("1")>-1)
+      {
+        SelectedPrarmeters[SelectedPrarmeters.length]="2";
+        SelectedPrarmeters[SelectedPrarmeters.length]="3";
+        SelectedPrarmeters[SelectedPrarmeters.length]="4";
+        SelectedPrarmeters[SelectedPrarmeters.length]="5";
+        SelectedPrarmeters[SelectedPrarmeters.length]="6";
+        SelectedPrarmeters[SelectedPrarmeters.length]="7";
+        SelectedPrarmeters[SelectedPrarmeters.length]="8";
+        SelectedPrarmeters[SelectedPrarmeters.length]="9";
+        SelectedPrarmeters[SelectedPrarmeters.length]="0";
+      }
+
+      //var SelectedPrarmeters=split(" ");
+      
+      //var SelectedPrarmeters = ["建议","推荐"];
+      //var SelectedPrarmeters=SelectedPrarmeters.split(",");
+      // var a=SelectedPrarmeters[0];
+      // SelectedPrarmeters =a.split(",");
+      var ParameterGet=0;
+      var TotalSkill=words.length;
+      var SelectedPrarmetersNum=SelectedPrarmeters.length;
+
+        for (count=0;count<=TotalSkill-1;count++){
+    //document.getElementById("demo").innerHTML = "you got it";
+    //i=count;
+
+          for (countSkill=0;countSkill<=SelectedPrarmetersNum;countSkill++){
+
+            var ifmatch=0;
+            ifmatch=words[count].indexOf(SelectedPrarmeters[countSkill]);
+            //var ifmatch=0;
+            //alert(ifmatch>-1);
+            //alart("ma");
+            if (ifmatch>-1)
+              { 
+               ParameterGet += 1;
+               outputwords[count]=1;
+             //  alert(ParameterGet);
+              }
+       //        document.getElementById("demo").innerHTML = "you got it"; 
+                //alert ("参数出现次数:"+ParameterGet+ "     ");
+            }
+            // alert ("参数出现次数:"+ParameterGet+ "     ");
+        }
+      for (count=0;count<outputwords.length;count++)
+      {
+        if(outputwords[count]==1)
+        {
+          outputstring=outputstring+"\n"+words[count];
+        }
+      }
+
+        alert ("参数出现过的段落:     \n" +outputstring);
+    }
+    </SCRIPT>
+    </HEAD>
+    <BODY>
+   <!--  <FORM NAME="myform">
+    
+    <TEXTAREA NAME="myarea" class="form-control" id ="textid" style = "max-width: 1020px" ROWS="30">
+ -->
+    <!-- </TEXTAREA> -->
+  <br></br>
+
+
+
+
+
+
+
+
+
+    <INPUT class="btn btn-primary btn-lg" id = "btnid" TYPE="button" NAME="button3" Value="分析" 
+        onClick="seeTextArea(this.form)">
+    </FORM>
+
+      <!--<div class="jumbotron">
+        <p>Please Paste The Job Description Below:</p>
+        <div class="form-group">
+        
+        <textarea class="form-control" rows="30" id="comment"></textarea>
+      </div>
+      <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+        
+        <p><a class="btn btn-primary btn-lg" role="button">Start Evaluate</a></p>
+        -->
+      </div>
+    
+    <footer>
+<!--     <p>View on <a href="http:///" target="_blank">GitHub</a></p> -->
+      </footer>
+
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.js"></script>
+	<script src="semantic/semantic.min.js"></script>
+	<script class="jsbin" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	
+  <script type="text/javascript">
+  $(".ui.dropdown").dropdown({
+    allowAdditions: true
+    });
+  </script>
+  
+  <script>
+  $("#textid").keydown(function(event){
+    if(event.keyCode == 13){
+        $("#btnid").click();
+    }
+	});
+	
+	$("#inputid").keydown(function(event){
+    if(event.keyCode == 13){
+        $("#insertid").click();
+    }
+	});
+  </script>
+  
+  <div id = "display"></div>
+  <script type = "text/javascript">
+	var SelectedPrarmeters = [];
+	var SelectedPrarmetersinput = document.getElementById("inputid");
+	
+	var messageBox = document.getElementById("display");
+	
+	function insert(){
+		SelectedPrarmeters.push(SelectedPrarmetersinput.value);
+		
+		clearAndShow();
+	}
+	
+	function clearAndShow () {
+	  // Clear our fields
+	  SelectedPrarmetersinput.value = "";
+	  
+	  // Show our output
+	  messageBox.innerHTML = "";
+	  
+	  //messageBox.innerHTML += "array: " + SelectedPrarmeters.join(",");
+    //   var a=SelectedPrarmeters[0];
+    //   SelectedPrarmeters =a.split(",");
+    // messageBox.innerHTML += "array_____: " + SelectedPrarmeters[0]+SelectedPrarmeters[1];
+
+	}
+  </script>
+ 
+
+
+
+<script type="text/javascript">
+ 
+ var textFromFileLoaded
+// function saveTextAsFile()
+// {
+//     var textToSave = document.getElementById("inputTextToSave").value;
+//     var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+//     var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+//     var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+ 
+//     var downloadLink = document.createElement("a");
+//     downloadLink.download = fileNameToSaveAs;
+//     downloadLink.innerHTML = "Download File";
+//     downloadLink.href = textToSaveAsURL;
+//     downloadLink.onclick = destroyClickedElement;
+//     downloadLink.style.display = "none";
+//     document.body.appendChild(downloadLink);
+ 
+//     downloadLink.click();
+// }
+ 
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target);
+}
+ 
+function loadFileAsText()
+{
+    var fileToLoad = document.getElementById("fileToLoad").files[0];
+ 
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent) 
+    {
+         textFromFileLoaded = fileLoadedEvent.target.result;
+                //alert ("Number of skills metched:"+textFromFileLoaded);
+
+        document.getElementById("inputTextToSave").value = textFromFileLoaded;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
+}
+ 
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>
+
+
+
+<!--
+
+<HTML>
+<HEAD>
+<TITLE>Text Area Test</TITLE>
+
+</BODY>
+</HTML>
